@@ -2,7 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Calculator extends JFrame {
+public class Calculator extends JFrame implements ActionListener {
+    JTextField display;
 
     // Constructor: This is where we will set up the window
     public  Calculator() {
@@ -12,7 +13,7 @@ public class Calculator extends JFrame {
         setLayout(null);// We will manually place components
         
         // Create a text field for displaying numbers and results
-        JTextField display = new JTextField();
+        display = new JTextField();
         display.setBounds(30, 30, 330, 50);           // Position and size (x, y, width, height)
         display.setEditable(false);                                   // User cannot type directly
         display.setFont(new Font("Arial", Font.BOLD, 24));   // Make text bigger
@@ -36,6 +37,7 @@ public class Calculator extends JFrame {
                 JButton btn = new JButton(buttons[i]);                            // Create button
                 btn.setBounds(x, y, 70, 50);                      // Position and size
                 btn.setFont(new Font("Arial", Font.BOLD, 20));       // Font size
+                btn.addActionListener(this);                                    // Add action listener
                 add(btn);                                                       // Add to window 
 
                 x += 86; // Move x position for next button
@@ -45,6 +47,11 @@ public class Calculator extends JFrame {
             x = 30; // Reset x position for new row
         }
                                                                                                  
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String value = e.getActionCommand();
+        display.setText(display.getText() + value);
     }
 
     public static void main(String[] args) {
