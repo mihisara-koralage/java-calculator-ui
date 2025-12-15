@@ -4,6 +4,10 @@ import java.awt.event.*;
 
 public class Calculator extends JFrame implements ActionListener {
     JTextField display;
+    double firstNumber = 0;
+    double secondNumber = 0;
+    char operator;
+
 
     // Constructor: This is where we will set up the window
     public  Calculator() {
